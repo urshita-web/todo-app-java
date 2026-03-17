@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Main Class - Application Entry Point
- * Must be public and match the filename (TodoApp.java)
+ * Filename: TodoApp.java
  */
 public class TodoApp {
     private static final Scanner scanner = new Scanner(System.in);
@@ -14,17 +14,14 @@ public class TodoApp {
     public static void main(String[] args) {
         boolean running = true;
 
-        System.out.println("====================================");
-        System.out.println("   PROFESSIONAL TO-DO LIST MANAGER  ");
-        System.out.println("====================================");
-
         while (running) {
+            displayHeader();
             displayMenu();
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    System.out.print("Enter task description: ");
+                    System.out.print("\n➤ Enter task description: ");
                     String desc = scanner.nextLine();
                     manager.addTask(desc);
                     break;
@@ -33,37 +30,46 @@ public class TodoApp {
                     break;
                 case "3":
                     manager.viewTasks();
-                    System.out.print("Enter task number to complete: ");
+                    System.out.print("\n➤ Enter task number to complete: ");
                     manager.completeTask(parseInput() - 1);
                     break;
                 case "4":
                     manager.viewTasks();
-                    System.out.print("Enter task number to delete: ");
+                    System.out.print("\n➤ Enter task number to delete: ");
                     manager.deleteTask(parseInput() - 1);
                     break;
                 case "5":
                     running = false;
-                    System.out.println("\nExiting application...");
+                    displayExitMessage();
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("\n❌ Invalid option. Please try again.");
             }
         }
-
-        System.out.println("\n------------------------------------");
-        System.out.println("        MADE BY URSHITA ROY        ");
-        System.out.println("------------------------------------");
         scanner.close();
     }
 
+    private static void displayHeader() {
+        System.out.println("\n============================================");
+        System.out.println("      PROFESSIONAL TO-DO LIST MANAGER       ");
+        System.out.println("           MADE BY URSHITA ROY              ");
+        System.out.println("============================================");
+    }
+
     private static void displayMenu() {
-        System.out.println("\nMAIN MENU:");
-        System.out.println("1. Add Task");
-        System.out.println("2. View All Tasks");
-        System.out.println("3. Mark Task as Completed");
-        System.out.println("4. Delete Task");
-        System.out.println("5. Exit");
-        System.out.print("Choose an option: ");
+        System.out.println(" 1. [+] Add New Task");
+        System.out.println(" 2. [☰] View All Tasks");
+        System.out.println(" 3. [✓] Mark Task as Completed");
+        System.out.println(" 4. [✘] Delete a Task");
+        System.out.println(" 5. [!] Exit Application");
+        System.out.print("\n👉 Choose an option: ");
+    }
+
+    private static void displayExitMessage() {
+        System.out.println("\n--------------------------------------------");
+        System.out.println("       THANK YOU FOR USING THE APP!         ");
+        System.out.println("           MADE BY URSHITA ROY              ");
+        System.out.println("--------------------------------------------");
     }
 
     private static int parseInput() {
@@ -76,7 +82,7 @@ public class TodoApp {
 }
 
 /**
- * Task Class - Data Model with Date Feature
+ * Task Class - Data Model
  */
 class Task {
     private String description;
@@ -87,21 +93,18 @@ class Task {
         this.description = description;
         this.isCompleted = false;
         
-        // Record current date and time
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
         this.creationDate = now.format(formatter);
     }
 
     public String getDescription() { return description; }
-    public boolean isCompleted() { return isCompleted; }
-    
     public void markAsCompleted() { this.isCompleted = true; }
 
     @Override
     public String toString() {
-        String status = isCompleted ? "[✓] " : "[ ] ";
-        return String.format("%-4s %-25s | Added: %s", status, description, creationDate);
+        String status = isCompleted ? "[✓] DONE  " : "[ ] PENDING";
+        return String.format("%-10s | %-20s | %s", status, description, creationDate);
     }
 }
 
@@ -114,40 +117,39 @@ class TaskManager {
     public void addTask(String description) {
         if (!description.trim().isEmpty()) {
             tasks.add(new Task(description));
-            System.out.println("Task added successfully!");
+            System.out.println("✅ Task added successfully!");
         } else {
-            System.out.println("Error: Task cannot be empty.");
+            System.out.println("⚠️ Error: Task cannot be empty.");
         }
     }
 
     public void viewTasks() {
         if (tasks.isEmpty()) {
-            System.out.println("\n--- No tasks found ---");
+            System.out.println("\n📭 Your list is currently empty.");
             return;
         }
-        System.out.println("\n-------------------------------------------------------------");
-        System.out.println("ID   Status   Description               Created On");
-        System.out.println("-------------------------------------------------------------");
+        System.out.println("\nID  STATUS     | DESCRIPTION          | CREATED ON");
+        System.out.println("--- -----------|----------------------|-----------------");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ".  " + tasks.get(i));
+            System.out.println((i + 1) + ". " + tasks.get(i));
         }
     }
 
     public void completeTask(int index) {
         if (index >= 0 && index < tasks.size()) {
             tasks.get(index).markAsCompleted();
-            System.out.println("Task marked as done!");
+            System.out.println("🎯 Task marked as finished!");
         } else {
-            System.out.println("Error: Task not found.");
+            System.out.println("❌ Error: Task not found.");
         }
     }
 
     public void deleteTask(int index) {
         if (index >= 0 && index < tasks.size()) {
             Task removed = tasks.remove(index);
-            System.out.println("Removed: " + removed.getDescription());
+            System.out.println("🗑️ Removed: " + removed.getDescription());
         } else {
-            System.out.println("Error: Invalid task number.");
+            System.out.println("❌ Error: Invalid task number.");
         }
     }
 }
