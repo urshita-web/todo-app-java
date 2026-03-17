@@ -1,79 +1,80 @@
-# 📝 Java To-Do List Application
+# 📝 Professional Java To-Do List Manager
 
-A simple and professional **console-based To-Do List application** built using Java. This project demonstrates core programming concepts such as object-oriented design, data structures, and user interaction through the command line.
+A **console-based To-Do List Manager** built in Java with a clean, modular, and professional structure. This application allows users to efficiently manage daily tasks with features like task tracking, timestamps, and status updates.
 
 ---
 
 ## 🚀 Features
 
-* ✅ Add new tasks
-* 📋 View all tasks
+* ✅ Add new tasks with description
+* 📋 View all tasks in a structured table format
 * ✔️ Mark tasks as completed
 * ❌ Delete tasks
-* 🧠 Simple and intuitive menu-driven interface
-* 📦 Single-file Java implementation
+* 🕒 Automatic timestamp when task is created
+* 🧠 Input validation and error handling
+* 📦 Fully implemented in a **single Java file**
 
 ---
 
 ## 🛠️ Technologies Used
 
 * Java
-* ArrayList (for task storage)
-* Scanner (for user input)
+* `ArrayList` for dynamic task storage
+* `Scanner` for user input
+* `LocalDateTime` & `DateTimeFormatter` for timestamps
 
 ---
 
 ## 📂 Project Structure
 
 ```
-TodoListApp.java   # Main application file (single-file project)
-README.md          # Project documentation
+TodoApp.java   # Contains all classes:
+               # - TodoApp (Main Class)
+               # - Task (Data Model)
+               # - TaskManager (Logic Handler)
+README.md
 ```
 
 ---
 
 ## ▶️ How to Run
 
-1. Clone the repository:
+### 1. Clone the repository
 
 ```
-git clone https://github.com/urshita-web/todo-list-java.git
+git clone https://github.com/urshita-web/todo-app-java.git
 ```
 
-2. Navigate to the project folder:
+### 2. Navigate to the folder
 
 ```
-cd todo-list-java
+cd todo-app-java
 ```
 
-3. Compile the program:
+### 3. Compile the code
 
 ```
-javac TodoListApp.java
+javac TodoApp.java
 ```
 
-4. Run the program:
+### 4. Run the application
 
 ```
-java TodoListApp
+java TodoApp
 ```
 
 ---
 
-## 💡 Usage
-
-* Choose options from the menu to manage your tasks
-* Enter task details when prompted
-* Easily track and update your daily activities
-
----
-
-## 📸 Sample Output
+## 💻 Sample Interface
 
 ```
-===== TO-DO LIST MENU =====
+====================================
+   PROFESSIONAL TO-DO LIST MANAGER
+====================================
+
+MAIN MENU:
 1. Add Task
-2. View Tasks
+2. View All Tasks
 3. Mark Task as Completed
 4. Delete Task
 5. Exit
@@ -81,11 +82,25 @@ java TodoListApp
 
 ---
 
-## 📌 Future Improvements
+## 📌 Key Highlights
 
-* Add file storage (save tasks permanently)
-* Implement GUI using Java Swing or JavaFX
-* Add task deadlines and priorities
+* Clean **Object-Oriented Design**
+* Separation of concerns:
+
+  * `Task` → Data Model
+  * `TaskManager` → Business Logic
+  * `TodoApp` → User Interface
+* Professional formatting with timestamps
+* Easy to expand (file storage, GUI, etc.)
+
+---
+
+## 🔮 Future Enhancements
+
+* 💾 Save tasks to file (persistent storage)
+* 🎨 GUI version using Java Swing or JavaFX
+* ⏰ Task deadlines & priority levels
+* 🔍 Search and filter tasks
 
 ---
 
@@ -93,10 +108,10 @@ java TodoListApp
 
 **MADE BY URSHITA ROY**
 
-GitHub: https://github.com/urshita-web
+🔗 GitHub: https://github.com/urshita-web
 
 ---
 
 ## ⭐ Support
 
-If you like this project, feel free to ⭐ the repository and share it!
+If you found this project helpful, consider giving it a ⭐ on GitHub!
